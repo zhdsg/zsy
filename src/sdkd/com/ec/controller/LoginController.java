@@ -1,6 +1,6 @@
 package sdkd.com.ec.controller;
 
-import sdkd.com.ec.dao.impl.UserDao;
+import sdkd.com.ec.dao.impl.EbUserDao;
 import sdkd.com.ec.model.EbUser;
 
 import javax.servlet.ServletException;
@@ -34,19 +34,28 @@ public class LoginController extends HttpServlet {
 
     public void Login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        String username = request.getParameter("userName");
-        String password = request.getParameter("passWord");
 
-        UserDao  ud = new UserDao();
-        if(ud.checkUser(username, password)){
-            EbUser user =new EbUser();
-            user.setEuUsername(username);
-            user.setEuPassword(password);
-            request.getSession().setAttribute("user", user);
+        String user =request.getParameter("userName");
+        String password =request.getParameter("passWord");
+
+        EbUserDao ebUserDao =new EbUserDao();
+        EbUser ebUser =new EbUser();
+
+        if(ebUserDao.getUser(user,password)==1){
+            ebUser.setEuUserName(user);
+            ebUser.setEuPassword(password);
+            ebUser.setEuStatus(1);
+            request.getSession().setAttribute("user",ebUser);
+            request.getRequestDispatcher("/index.servlet").forward(request,response);
+        }else if (ebUserDao.getUser(user,password)==0){
+            request.setAttribute("hint","用户名密码错误！！！");
+            request.getRequestDispatcher("/login.jsp").forward(request,response);
+        }else if(ebUserDao.getUser(user,password)==2) {
+            ebUser.setEuUserName(user);
+            ebUser.setEuPassword(password);
+            ebUser.setEuStatus(2);
+            request.getSession().setAttribute("user", ebUser);
             request.getRequestDispatcher("/index.servlet").forward(request, response);
-        }else{
-
-            request.getRequestDispatcher("login.jsp").forward(request,response);
         }
 
     }

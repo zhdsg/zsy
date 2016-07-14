@@ -74,6 +74,14 @@
         <servlet-name>MNewsController</servlet-name>
         <url-pattern>/mnews.servlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>sdkd.com.ec.controller.backend.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/manageUser.servlet</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>/manage/index.jsp</welcome-file>

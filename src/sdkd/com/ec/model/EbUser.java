@@ -1,48 +1,50 @@
 package sdkd.com.ec.model;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
- * Created by Administrator on 2016/7/6.
+ * 用户表
+ * Created by SDUST-132 on 2016/7/5.
  */
 public class EbUser {
-    /**
-     * eu_user_id
-     eu_user_name
-     eu_password
-     eu_sex
-     eu_birthday
-     eu_identity_code
-     eu_email
-     eu_mobile
-     eu_address
-     eu_status
+    /*
+    eu_user_id
+eu_user_name
+eu_password
+eu_sex
+eu_birthday
+eu_identity_code
+eu_email
+eu_mobile
+eu_address
+eu_status
 
      */
-    String euUserid;
-    String euUsername;
-    String euPassword;
-    String euSex;
-    Data euBirthday;
-    String euIdentitycode;
-    String euEmail;
-    String euAddress;
-    String euStatus;
+    private int euUserId;
+    private String  euUserName;
+    private String euPassword;
+    private String euSex;
+    private Date euBirthday;
+    private String euIdentityCode;
+    private String euEmail;
+    private String euMobile;
+    private String euAddress;
+    private int  euStatus;
 
-    public String getEuUserid() {
-        return euUserid;
+    public int getEuUserId() {
+        return euUserId;
     }
 
-    public void setEuUserid(String euUserid) {
-        this.euUserid = euUserid;
+    public void setEuUserId(int euUserId) {
+        this.euUserId = euUserId;
     }
 
-    public String getEuUsername() {
-        return euUsername;
+    public String getEuUserName() {
+        return euUserName;
     }
 
-    public void setEuUsername(String euUsername) {
-        this.euUsername = euUsername;
+    public void setEuUserName(String euUserName) {
+        this.euUserName = euUserName;
     }
 
     public String getEuPassword() {
@@ -61,20 +63,20 @@ public class EbUser {
         this.euSex = euSex;
     }
 
-    public Data getEuBirthday() {
+    public Date getEuBirthday() {
         return euBirthday;
     }
 
-    public void setEuBirthday(Data euBirthday) {
+    public void setEuBirthday(Date euBirthday) {
         this.euBirthday = euBirthday;
     }
 
-    public String getEuIdentitycode() {
-        return euIdentitycode;
+    public String getEuIdentityCode() {
+        return euIdentityCode;
     }
 
-    public void setEuIdentitycode(String euIdentitycode) {
-        this.euIdentitycode = euIdentitycode;
+    public void setEuIdentityCode(String euIdentityCode) {
+        this.euIdentityCode = euIdentityCode;
     }
 
     public String getEuEmail() {
@@ -85,6 +87,14 @@ public class EbUser {
         this.euEmail = euEmail;
     }
 
+    public String getEuMobile() {
+        return euMobile;
+    }
+
+    public void setEuMobile(String euMobile) {
+        this.euMobile = euMobile;
+    }
+
     public String getEuAddress() {
         return euAddress;
     }
@@ -93,26 +103,11 @@ public class EbUser {
         this.euAddress = euAddress;
     }
 
-    public String getEuStatus() {
+    public int getEuStatus() {
         return euStatus;
     }
 
-    public void setEuStatus(String euStatus) {
+    public void setEuStatus(int euStatus) {
         this.euStatus = euStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "EbUser{" +
-                "euUserid=" + euUserid +
-                ", euUsername='" + euUsername + '\'' +
-                ", euPassword='" + euPassword + '\'' +
-                ", euSex='" + euSex + '\'' +
-                ", euBirthday=" + euBirthday +
-                ", euIdentitycode='" + euIdentitycode + '\'' +
-                ", euEmail='" + euEmail + '\'' +
-                ", euAddress='" + euAddress + '\'' +
-                ", euStatus='" + euStatus + '\'' +
-                '}';
     }
 }

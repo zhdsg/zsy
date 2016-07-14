@@ -1,6 +1,6 @@
 package sdkd.com.ec.controller;
 
-import sdkd.com.ec.dao.impl.UserDao;
+import sdkd.com.ec.dao.impl.EbUserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +22,12 @@ public class RegisterController extends HttpServlet {
              String username = request.getParameter("userName");
              String password = request.getParameter("passWord");
 
-             UserDao ud = new UserDao();
-             if(ud.insertUser(username, password) == true){
-                 System.out.println("输入正确");
+             EbUserDao ud = new EbUserDao();
+             if(!ud.hasRegisterUser(username)){    //遍历数据库查询用户是否已存在
+                 ud.registerUser(username,password);//不存在，添加
                  request.getRequestDispatcher("reg-result.jsp").forward(request, response);
         }else{
+                 request.setAttribute("hint","用户名已存在!!!1");
                  request.getRequestDispatcher("register.jsp").forward(request, response);
              }
     }

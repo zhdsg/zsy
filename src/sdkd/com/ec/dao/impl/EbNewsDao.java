@@ -73,7 +73,7 @@ public class EbNewsDao extends BaseDao {
         List<String> params = new ArrayList<>();
         params.add(newsTitle);
         params.add(newsContent);
-        params.add(DateUtil.parseDatetoStr(createTime, "yyyy-MM-dd HH:mm:ss"));
+        params.add(DateUtil.parseDateToStr(createTime, "yyyy-MM-dd HH:mm:ss"));
         int res = this.excuteModify(sql, params);
         return (res > 0);
     }
@@ -92,7 +92,7 @@ public class EbNewsDao extends BaseDao {
         List<String> params = new ArrayList<>();
         params.add(newTitle);
         params.add(newContent);
-        params.add(DateUtil.parseDatetoStr(createTime, "yyyy-MM-dd HH:mm:ss"));
+        params.add(DateUtil.parseDateToStr(createTime, "yyyy-MM-dd HH:mm:ss"));
         params.add(id+"");
         int res = this.excuteModify(sql, params);
         return (res > 0);
