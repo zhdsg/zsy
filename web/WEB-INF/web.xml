@@ -56,9 +56,27 @@
         <servlet-name>EbPContentController</servlet-name>
         <url-pattern>/pcontent.servlet</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
+        <servlet-name>EbShoppingController</servlet-name>
+        <servlet-class>sdkd.com.ec.controller.EbShoppingController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EbShoppingController</servlet-name>
+        <url-pattern>/shopping.servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MNewsController</servlet-name>
+        <servlet-class>sdkd.com.ec.controller.backend.MNewsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MNewsController</servlet-name>
+        <url-pattern>/mnews.servlet</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
-        <welcome-file>index.servlet</welcome-file>
+        <welcome-file>/manage/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -1,3 +1,5 @@
+<%@ page import="sdkd.com.ec.model.EbPCategory" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,12 +9,13 @@
 <title>易买网 - 首页</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/function.js"></script>
+
 </head>
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="#" class="shopping">购物车</a><c:if test="${user==null}"><a href="login.jsp">登录</a><a href="register.jsp">注册</a> </c:if>
-		<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="login.jsp">退出</a></c:if></div>
+	<div class="help"><a href="/shopping.servlet" class="shopping">购物车</a><c:if test="${user==null}"><a href="login.jsp">登录</a><a href="register.jsp">注册</a> </c:if>
+		<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="login.servlet?action=logout">退出</a></c:if></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -46,7 +49,9 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
+
+	您现在的位置：<a href="/index.servlet">易买网</a> &gt; <a href="/pcontent.servlet?id_ep=${epcId}&action=detail_product"><c:if test="${epcParentId ==0}">${epcName}</c:if></a> &gt; <c:if test = "${epcParentId != 0}">${epcName}</c:if>
+
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -85,13 +90,20 @@
 			<div class="pager">
 
 				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
+					<input type="text" size="5" id="toPage" /><button onclick="goPage()">GO</button>
+					<select onselect="setPageSize()">
+						<option value="4">==显示条数==</option>
+						<option value="4">4</option>
+						<option value="8">8</option>
+						<option value="10">10</option>
+					</select>
+					<li><a href="/pcontent.servlet?action=detail_product&pageIndex=1&id_ep=${epcId}">首页</a></li>
+					<c:if test="${pageIndex>1}"><li><a href="/pcontent.servlet?action=detail_product&pageIndex=${pageIndex-1}">上一页</a></li></c:if>
+					<c:forEach var="page" begin="1" end="${totalPage}">
+						<li><a href="/pcontent.servlet?action=detail_product&pageIndex=${page}id_ep=${epcId}">${page}</a></li>
+					</c:forEach>
+					<c:if test="${pageIndex<totalPage}"><li><a href="/pcontent.servlet?action=detail_product&pageIndex=${pageIndex+1}">下一页</a></li></c:if>
+					<li><a href="/pcontent.servlet?action=detail_product&pageIndex=${totalPage}>末页</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -100,8 +112,8 @@
 				<c:forEach var = "proList" items="${proList}">
 				<li>
 					<dl>
-							<dt><a href="/pcontent.servlet?id=${proList.epId}" target="_blank"><img src="images/product/${proList.epId}.jpg" /></a></dt>
-							<dd class="title"><a href="/pcontent.servlet?id=${proList.epId}" target="_blank">${proList.epName}</a></dd>
+							<dt><a href="/pcontent.servlet?id_pro=${proList.epId}" target="_blank"><img src="images/product/${proList.epId}.jpg" /></a></dt>
+							<dd class="title"><a href="/pcontent.servlet?id_pro=${proList.epId}" target="_blank">${proList.epName}</a></dd>
 							<dd class="price">${proList.epPrice}</dd>
 					</dl>
 				</li>
@@ -110,13 +122,20 @@
 			<div class="clear"></div>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
+					<input type="text" size="5" id="toPage" /><button onclick="goPage()">GO</button>
+					<select onselect="setPageSize()">
+						<option value="4">==显示条数==</option>
+						<option value="4">4</option>
+						<option value="8">8</option>
+						<option value="10">10</option>
+					</select>
+					<li><a href="/pcontent.servlet?action=detail_product&pageIndex=1">首页</a></li>
+					<c:if test="${pageIndex>1}"><li><a href="/pcontent.servlet?action=detail_product&pageIndex=${pageIndex-1}">上一页</a></li></c:if>
+					<c:forEach var="page" begin="1" end="${totalPage}">
+						<li><a href="/pcontent.servlet?action=detail_product&pageIndex=${page}">${page}</a></li>
+					</c:forEach>
+					<c:if test="${pageIndex<totalPage}"><li><a href="/pcontent.servlet?action=detail_product&pageIndex=${pageIndex+1}">下一页</a></li></c:if>
+					<li><a href="/pcontent.servlet?action=detail_product&pageIndex=${totalPage}">末页</a></li>
 				</ul>
 			</div>
 		</div>

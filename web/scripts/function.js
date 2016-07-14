@@ -142,7 +142,7 @@ function goBuy(id, price)
 		newCookie = id;
 	}
 	setCookie("product", newCookie);
-	location.href = "shopping.jsp";
+	location.href = "/shopping.servlet?action=add&id="+id;
 }
 
 function delShopping(id)
@@ -162,19 +162,32 @@ function delShopping(id)
 	if(tr) tr.parentNode.removeChild(tr);
 }
 
-function reloadPrice(id, status)
-{
+function reloadPrice(id, status) {
 	var price = document.getElementById("price_id_" + id).getElementsByTagName("input")[0].value;
 	var priceBox = document.getElementById("price_id_" + id).getElementsByTagName("span")[0];
 	var number = document.getElementById("number_id_" + id);
-	if(status) {
+	if (status) {
 		number.value++;
 	} else {
-		if(number.value == 1) {
+		if (number.value == 1) {
 			return false;
 		} else {
 			number.value--;
 		}
 	}
 	priceBox.innerHTML = "￥" + price * number.value;
+}
+	function modifyQuantity(id, index) {
+		var number = document.getElementById("number_id_" + id);
+		location.href = "/shopping.servlet?action=mod&id="+id+"&quantity="+number.value+"&index="+index;
+	}
+	function removeShopping(id, index) {
+		location.href = "/shopping.servlet?action=remove&id="+id+"&index="+index;
+	}
+
+	function goPage(){
+		 	var toPage = document.getElementById("toPage");
+		 	location.href = "/pcontent.servlet?action=detail_product&pageIndex="+toPage.value;;
+		 
+
 }

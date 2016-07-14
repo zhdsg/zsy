@@ -5,14 +5,7 @@ package sdkd.com.ec.model;
  */
 public class EbProduct {
     /*
-    ep_id
-ep_name
-ep_description
-ep_price
-ep_stock
-epc_id
-epc_child_id
-ep_file_name
+
 
      */
     private int epId;
@@ -23,6 +16,29 @@ ep_file_name
     private int  epcId;
     private int epDiscount;
     private int epHotsale;
+    private Integer epViews;
+
+    public EbProduct(){}
+
+    public Integer getEpViews() {
+        return epViews;
+    }
+
+    public void setEpViews(Integer epViews) {
+        this.epViews = epViews;
+    }
+
+    public EbProduct(String epName, String epDescription, Double epPrice, Integer epStock, Integer epcId, Integer epcChildId, String epFileName, Integer epDiscount) {
+                 this.epName = epName;
+                 this.epDescription = epDescription;
+                 this.epPrice = epPrice;
+                 this.epStock = epStock;
+                 this.epcId = epcId;
+                 this.epcChildId = epcChildId;
+                 this.epFileName = epFileName;
+                 this.epDiscount = epDiscount;
+            }
+
 
     public int getEpDiscount() {
         return epDiscount;
@@ -108,4 +124,23 @@ ep_file_name
 
     private int epcChildId;
     private String epFileName;
+
+    @Override
+         public String toString() {
+                return "EbProduct{" +
+                                 "epId=" + epId +
+                                 ", epName='" + epName + '\'' +
+                                 ", epDescription='" + epDescription + '\'' +
+                                 ", epPrice=" + epPrice +
+                                 ", epStock=" + epStock +
+                                 ", epcId=" + epcId +
+                                 ", epcChildId=" + epcChildId +
+                                 ", epFileName='" + epFileName + '\'' +
+                                 ", epDiscount=" + epDiscount +
+                                 ", epViews=" + epViews +
+                                 '}';
+             }
+
+
+
 }

@@ -67,7 +67,7 @@ public class BaseDao {
         try {
           con = this.getConnections();
             //CRUD
-            System.out.println(sql);
+           // System.out.println(sql);
             PreparedStatement ps = con.prepareStatement(sql);
             if(params != null && params.size() > 0){
                 for(int i = 0; i <params.size(); i++){
@@ -94,6 +94,29 @@ public class BaseDao {
                 }
             }
             rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet myExcuteSearch(String sql, List<Object> params){
+        ResultSet rs = null;
+        con = this.getConnections();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            if(params != null && params.size() > 0){
+                for(int i = 0; i < params.size(); i++){
+                    Object obj = params.get(i);
+                    String typeName = obj.getClass().getName();
+                    if("java.lang.Integer".equals(typeName)){
+                        ps.setInt((i + 1), Integer.parseInt(obj.toString()));
+                    } else if("java.lang.String".equals(typeName)){
+                        ps.setString((i + 1), obj.toString());
+                    }
+                }
+            }
+               rs = ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

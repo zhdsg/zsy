@@ -45,7 +45,7 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; 购物车
+	您现在的位置：<a href="/index.servlet">易买网</a> &gt; 购物车
 </div>
 <div class="wrap">
 	<div id="shopping">
@@ -57,7 +57,7 @@
 					<p>恭喜：购买成功！</p>
 					<p>正在进入首页...</p>
 					<script type="text/javascript">
-						setTimeout("location.href='index.jsp'", 3000);
+						setTimeout("location.href='/index.servlet'", 3000);
 					</script>
 				</div>
 			</div>

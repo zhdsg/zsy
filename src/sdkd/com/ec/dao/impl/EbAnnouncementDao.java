@@ -25,9 +25,9 @@ public class EbAnnouncementDao extends BaseDao {
                 ann.setNoCreateTime(rs.getTime("notice_create_time"));
                 annList.add(ann);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         return annList;
     }
 }

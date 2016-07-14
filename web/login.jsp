@@ -12,7 +12,7 @@
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
 	<div class="help"><a href="#" class="shopping">购物车</a><c:if test="${user==null}"><a href="login.jsp">登录</a><a href="register.jsp">注册</a> </c:if>
-		<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="login.jsp">退出</a></c:if></div>
+		<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="/login.servlet?action=logout">退出</a></c:if></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -51,7 +51,7 @@
 		<em class="corner rt"></em>
 		<div class="box">
 			<h1>欢迎回到易买网</h1>
-			<form id="loginForm" method="post" action="/login.servlet" onsubmit="return checkForm(this)">
+			<form id="loginForm" method="post" action="/login.servlet?action=login" onsubmit="return checkForm(this)">
 				<table>
 					<tr>
 						<td class="field">用户名：</td>

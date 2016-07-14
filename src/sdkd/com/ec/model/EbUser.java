@@ -19,7 +19,7 @@ public class EbUser {
      eu_status
 
      */
-    Integer euUserid;
+    String euUserid;
     String euUsername;
     String euPassword;
     String euSex;
@@ -29,11 +29,11 @@ public class EbUser {
     String euAddress;
     String euStatus;
 
-    public Integer getEuUserid() {
+    public String getEuUserid() {
         return euUserid;
     }
 
-    public void setEuUserid(Integer euUserid) {
+    public void setEuUserid(String euUserid) {
         this.euUserid = euUserid;
     }
 
@@ -99,5 +99,20 @@ public class EbUser {
 
     public void setEuStatus(String euStatus) {
         this.euStatus = euStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "EbUser{" +
+                "euUserid=" + euUserid +
+                ", euUsername='" + euUsername + '\'' +
+                ", euPassword='" + euPassword + '\'' +
+                ", euSex='" + euSex + '\'' +
+                ", euBirthday=" + euBirthday +
+                ", euIdentitycode='" + euIdentitycode + '\'' +
+                ", euEmail='" + euEmail + '\'' +
+                ", euAddress='" + euAddress + '\'' +
+                ", euStatus='" + euStatus + '\'' +
+                '}';
     }
 }

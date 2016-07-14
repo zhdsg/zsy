@@ -11,8 +11,8 @@
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><a href="#" class="shopping">购物车</a><c:if test="${user==null}"><a href="login.jsp">登录</a><a href="register.jsp">注册</a> </c:if>
-<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="login.jsp">退出</a></c:if></div>
+	<div class="help"><a href="/shopping.servlet" class="shopping">购物车</a><c:if test="${user==null}"><a href="login.jsp">登录</a><a href="register.jsp">注册</a> </c:if>
+<c:if test="${user!=null}"><a href="guestbook.jsp">留言</a><a href="login.servlet?action=logout">退出</a></c:if></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -66,10 +66,10 @@
 		<div class="last-view">
 			<h2>最近浏览</h2>
 			<dl class="clearfix">
-				<dt><img src="images/product/0_tiny.gif" /></dt>
-				<dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
-				<dt><img src="images/product/0_tiny.gif" /></dt>
-				<dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
+				<c:forEach var = "recent" items="${recent}">
+				<dt><img src="${recent.epFileName}" width="54px" height="54px"/></dt>
+				<dd><a href="/pcontent.servlet?id=${recent.epId}">${recent.epName}</a></dd>
+					</c:forEach>
 			</dl>
 		</div>
 	</div>

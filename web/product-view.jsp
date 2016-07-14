@@ -1,4 +1,7 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page import="java.util.List" %>
+<%@ page import="sdkd.com.ec.model.EbProduct" %>
+<%@ page import="sdkd.com.ec.model.EbPCategory" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,6 +10,9 @@
 <title>易买网 - 首页</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/function.js"></script>
+	<%
+		List<EbPCategory> pcalist = (List<EbPCategory>)request.getAttribute("pcaList");
+	%>
 </head>
 <body>
 <div id="header" class="wrap">
@@ -46,7 +52,7 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
+	您现在的位置：<a href="/index.servlet">易买网</a> &gt; <a href="/pcontent.servlet?id_ep=${pcalist.epcId}&action=detail_product">${pcalist.epcName}</a> &gt; <c:if test = "${epcParentId != 0}">${epcName}</c:if>
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -72,11 +78,13 @@
 			<div class="thumb"><img src="images/product/${epId}.jpg" /></div>
 			<div class="buy">
 				<p>商城价：<span class="price">${proPrice}</span></p>
-				<p>库　存：有货</p>
-				<p>库　存：有货</p>
-				<p>库　存：有货</p>
-				<p>库　存：有货</p>
-				<div class="button"><input type="button" name="button" value="" onclick="goBuy(1)" /><a href="#">放入购物车</a></div>
+                 <c:if test="${proStock==0}">
+				 <p>库　存：无货</p>
+				 </c:if>
+				<c:if test="${proStock!=0}">
+					<p>库　存：有货可拍</p>
+				</c:if>
+				<div class="button"><input type="button" name="button" value="" onclick="goBuy(${epId})" /><a href="#">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>
